@@ -33,9 +33,10 @@ function Employee(firstName, lastName, birthdate) {
         return this.firstName + " " + this.lastName;
     }
     this.getAge = function () {
-        let currentYear = new Date().getFullYear();
-        let birthYear = new Date(this.birthdate).getFullYear();
-        return currentYear - birthYear;
+        // let currentYear = new Date().getFullYear();
+        // let birthYear = new Date(this.birthdate).getFullYear();
+        // return currentYear - birthYear;
+        return new Date().getFullYear() - this.birthdate.getFullName();
     }
 }
 
@@ -48,7 +49,7 @@ employees.push(e1, e2, e3);
 let findAge = employees.find(item => item.getAge() > 20);
 console.log(findAge.firstName);
 
-let result = employees.filter(item => item.getAge() > 21)
+let result = employees.filter(item => item.birthdate.getFullName() > 2000)
     .map(item => item.getFullName());
 
 console.log(result);
