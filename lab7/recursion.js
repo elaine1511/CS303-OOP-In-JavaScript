@@ -23,42 +23,58 @@ linkedlist.print(); //in the console, you should see: LinkedList{1, 2,3}
 linkedlist.remove(2);
 linkedlist.print() //in the console, you should see: LinkedList{1,3}
 */
-let linkedlist = {
-    head: null,
-    node: function (item) {
-        return {
-            value: item,
-            next: null
-        };
-    },
+let linkedlist = {};
 
-    add: function (item) {
-        let current,
-            newNode = this.node(item);
-        if (this.head === null) {
-            this.head = newNode;
+linkedlist.add = function (element) {
+    if (this.value === undefined) {
+        this.value = element;
+        this.next = null;
+    } else {
+        let current = this;
+        while (current.next) {
+            current = current.next;
         }
-        else {
-            current = this.head;
-            while (current.next !== null) {
-                current = current.next;
-            }
-            current.next = newNode;
-        }
-        this.size++;
-    },
-
-    remove: function (list) {
-
-    },
-
-    print: function () {
-
+        current.next = { value: element, next: null };
     }
+};
+
+linkedlist.remove = function (element) {
+    var current = this;
+    var prev = null;
+    while (current) {
+        if (current.value === element) {
+            if (prev == null) {
+                this.value = current.next.value; this.next = current.next.next;
+            } else {
+                prev.next = current.next;
+            }
+            return true;
+        }
+        prev = current;
+        current = current.next;
+    }
+    return false;
+};
+
+linkedlist.printHelper = function (list, result) {
+    if (list.next == null) {
+        result += list.value;
+        return result;
+    }
+    result += list.value + ',';
+    return this.printHelper(list.next, result);
+};
+
+linkedlist.print = function () {
+    let result = 'LinkedList{';
+    result = this.printHelper(this, result); result += '}';
+    console.log(result);
 };
 
 linkedlist.add(1);
 linkedlist.add(2);
 linkedlist.add(3);
-console.log(linkedlist.print());
+linkedlist.print(); //in the console, you should see: LinkedList{1,2,3} 
+linkedlist.remove(3);
+linkedlist.print(); //in the console, you should see: LinkedList{1,3}
 
