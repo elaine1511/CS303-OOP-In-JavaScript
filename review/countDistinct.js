@@ -1,4 +1,4 @@
-let pet = ["dog", "chicken", "dog", "rabbit", "chicken"];
+let pet = ["dog", "chicken", "dog", "rabbit", "dog"];
 
 function aggregate(arr) {
     return arr.reduce(function (obj, pet) {
@@ -10,14 +10,14 @@ function aggregate(arr) {
         return obj;
     }, {});
 }
-
+//another solution
 function distint(arr) {
     let result = {};
     for (let item of arr) {
-        if (result[item]) {
-            result[item] += 1;
-        } else {
+        if (!result[item]) {
             result[item] = 1;
+        } else {
+            result[item]++;
         }
     }
     return result;
