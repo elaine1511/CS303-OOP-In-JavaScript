@@ -44,7 +44,8 @@ linkedlist.remove = function (element) {
     while (current) {
         if (current.value === element) {
             if (prev == null) {
-                this.value = current.next.value; this.next = current.next.next;
+                this.value = current.next.value;
+                this.next = current.next.next;
             } else {
                 prev.next = current.next;
             }
